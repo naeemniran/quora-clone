@@ -1,2 +1,19 @@
-<h1>Hello World</h1>
-<p>See Me in views/static/index.html.erb</p>
+<h1>Quora Clone</h1>
+<p>Get Enlightened Together</p>
+
+<% if session[:user_id] == nil %>
+	<p>Log in, or sign up if you have not done so!</p>
+<% else %>
+	<%= User.find(session[:user_id]).email %>
+<% end %>
+
+<h2>Login</h2>
+<%= @login_error %>
+<form method="post" action="/login">
+    <input type=text placeholder="Email" name="user[email]"><br>
+    <input type=password placeholder="Password" name="user[password]"></br>
+    <input type=submit value="Login">
+</form>
+
+<h2>Question?</h2>
+<form method="post" action="/question/new"

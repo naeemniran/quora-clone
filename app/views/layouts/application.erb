@@ -1,8 +1,22 @@
 <html>
 	<head>
-		<title>Sinatra Framework</title>
+		<title>Quora Sinatra</title>
 	</head>
 	<body>
+		<a href="/">Home</a>
+
+		<% if logged_in? %>
+			<form method="post" action="/logout">
+				<input type=submit value="Logout">
+			</form>
+		<% else %>
+			<a href="/users/new">Sign up!</a>
+		<% end %>
+		<%= @success ? @success : nil %>
+		<% if logged_in? %>
+			<p>Hello <%= current_user.email %></p>
+		<% end %>
+
 		<%= yield %>
 	</body>
 </html>
